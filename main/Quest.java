@@ -19,11 +19,11 @@ public class Quest {
         int questnum = random.nextInt(questTypes.length);
 
         switch (questType){
-            case "fetchQuest": return new FetchQuest().generateQuest(); break;
-            case "killQuest": return new KillQuest().generateQuest(); break;
-            case "targetQuest": return new TargetQuest().generateQuest(); break;
-            case "deliverQuest": return new DeliverQuest().generateQuest(); break;
-            case "escortQuest": return new EscortQuest().generateQuest(); break;
+            case "fetchQuest": return new FetchQuest().generateQuest();
+            case "killQuest": return new KillQuest().generateQuest();
+            case "targetQuest": return new TargetQuest().generateQuest();
+            case "deliverQuest": return new DeliverQuest().generateQuest();
+            case "escortQuest": return new EscortQuest().generateQuest();
             default: return getQuest(questTypes[questnum]);
 
         }
@@ -56,7 +56,6 @@ class FetchQuest extends Quest {
         String object = adjectives[random.nextInt(adjectives.length)] + objects[random.nextInt(objects.length)];
         String location = adj2[random.nextInt(adj2.length)] + locations[random.nextInt(locations.length)];
         return String.format("%s wants the party to get %s %s from %s %s to the %s, and will pay %s.", super.npc.getName(), getArticle(object), object, getArticle(location), location, direction, reward);
-
     }
 
 }
@@ -97,8 +96,32 @@ class TargetQuest extends KillQuest {
 
 class DeliverQuest extends Quest {
 
+    String[] objects = {"sword", "book", "scroll", "letter", "set of armour", "helmet", "shield", "axe", "hammer", "animal", "package"};
+    String[] destinations = {"town", "city", "village", "fort", "castle", "cave", "college"};
+    NPC recipient = new NPC().generateRandomNPC();
+
+    DeliverQuest() {}
+
+    public String generateQuest() {
+        reward = (random.nextInt(36) + 15) + "g";
+        String object = objects[random.nextInt(objects.length)];
+        String destination = destinations[random.nextInt(destinations.length)];
+        return String.format("%s wants the party to deliver %s %s to %s, who is in a %s to the %s, and will pay %s", super.npc.getName(), getArticle(object), object, destination, direction, reward);
+    }
+
 }
 
 class EscortQuest extends Quest {
+
+    String[] destinations = {"town", "city", "village", "fort", "castle", "cave", "college"};
+
+    EscortQuest() {}
+
+    public String generateQuest() {
+        reward = (random.nextInt(36) + 15) + "g";
+        String destination = destinations[random.nextInt(destinations.length)];
+        return String.format("%s wants the party to escort them to a %s to the %s, and will pay %s", super.npc.getName(), destination, direction, reward);
+
+    }
 
 }
