@@ -70,12 +70,21 @@ public class MenuDriver {
             }
         });
 
+        JButton quest = new JButton("Generate Quest");
+        quest.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        quest.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel questPanel = questGeneratorUI(frame, mainMenu);
+            }
+        });
+
         mainMenu.add(character);
         mainMenu.add(Box.createRigidArea(new Dimension(0, 10)));
         mainMenu.add(npc);
 
         frame.add(mainMenu);
-        frame.setVisible(true); //allows frame/gui to appear, must have
+        frame.setVisible(true); //allows window/gui to appear, must have
     }
 
     public static JPanel buildCharacterGeneratorUI(JFrame window, JPanel parent) {
@@ -638,6 +647,156 @@ public class MenuDriver {
         frame.add(buttons);
 
         return frame;
+
+    }
+
+    public static JPanel questGeneratorUI(JFrame window, JPanel parent){
+
+        Border empty;
+        empty = BorderFactory.createLineBorder(def, 30); //creates a border
+
+        JPanel frame = new JPanel();
+        frame.setBackground(def);
+
+        BoxLayout bx = new BoxLayout(frame, BoxLayout.Y_AXIS);
+        frame.setLayout(bx);
+
+        JLabel title = new JLabel();
+        title.setFont(new Font(font, 0, 25));
+        title.setForeground(new Color(255, 255, 255));
+        title.setText("Generate Quest");
+        title.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+        JPanel chooseQuest = new JPanel();
+        chooseQuest.setLayout(bx);
+
+        JButton qfetch = new JButton("Fetch");
+        JButton qkill = new JButton("Kill");
+        JButton qtarget = new JButton("Target");
+        JButton qdeliver = new JButton("Deliver");
+        JButton qescort = new JButton("Escort");
+        JButton qrandom = new JButton("Random");
+
+        qfetch.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        qkill.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        qtarget.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        qdeliver.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        qescort.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        qrandom.setAlignmentX(JButton.CENTER_ALIGNMENT);
+
+        chooseQuest.add(qfetch);
+        chooseQuest.add(qkill);
+        chooseQuest.add(qtarget);
+        chooseQuest.add(qdeliver);
+        chooseQuest.add(qescort);
+        chooseQuest.add(qrandom);
+        chooseQuest.setBackground(def);
+
+        qfetch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JPanel questPanel = generatedQuestUI(window, frame, "fetchQuest");
+                questPanel.setVisible(false);
+                frame.add(questPanel);
+                frame.setVisible(false);
+                questPanel.setVisible(true);
+            }
+        });
+
+        qkill.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JPanel questPanel = generatedQuestUI(window, frame, "killQuest");
+                questPanel.setVisible(false);
+                frame.add(questPanel);
+                frame.setVisible(false);
+                questPanel.setVisible(true);
+            }
+        });
+
+        qtarget.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JPanel questPanel = generatedQuestUI(window, frame, "targetQuest");
+                questPanel.setVisible(false);
+                frame.add(questPanel);
+                frame.setVisible(false);
+                questPanel.setVisible(true);
+            }
+        });
+
+        qdeliver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JPanel questPanel = generatedQuestUI(window, frame, "deliverQuest");
+                questPanel.setVisible(false);
+                frame.add(questPanel);
+                frame.setVisible(false);
+                questPanel.setVisible(true);
+            }
+        });
+
+        qescort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JPanel questPanel = generatedQuestUI(window, frame, "escortQuest");
+                questPanel.setVisible(false);
+                frame.add(questPanel);
+                frame.setVisible(false);
+                questPanel.setVisible(true);
+            }
+        });
+
+        qrandom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JPanel questPanel = generatedQuestUI(window, frame, "N/A");
+                questPanel.setVisible(false);
+                frame.add(questPanel);
+                frame.setVisible(false);
+                questPanel.setVisible(true);
+            }
+        });
+
+
+        JPanel buttons = new JPanel();
+
+        JButton back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                frame.setVisible(false);
+                parent.setVisible(true);
+            }
+        });
+        back.setAlignmentX(JButton.CENTER_ALIGNMENT);
+
+        /*JButton confirm = new JButton("Confirm");
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel quest = generatedQuestUI(window, frame, );
+                quest.setVisible(false);
+                window.add(quest);
+                frame.setVisible(false);
+                quest.setVisible(true);
+            }
+        });
+        confirm.setAlignmentX(JButton.CENTER_ALIGNMENT);
+
+        buttons.add(confirm);*/
+        buttons.add(back);
+        buttons.setBackground(def);
+
+        frame.add(Box.createRigidArea(new Dimension(0, 30)));
+        frame.add(buttons);
+
+        return frame;
+
+    }
+
+    public static JPanel generatedQuestUI(JFrame window, JPanel parent, String questType){
+
 
     }
 
