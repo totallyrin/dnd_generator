@@ -76,12 +76,18 @@ public class MenuDriver {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JPanel questPanel = questGeneratorUI(frame, mainMenu);
+                questPanel.setVisible(false);
+                frame.add(questPanel);
+                mainMenu.setVisible(false);
+                questPanel.setVisible(true);
             }
         });
 
         mainMenu.add(character);
         mainMenu.add(Box.createRigidArea(new Dimension(0, 10)));
         mainMenu.add(npc);
+        mainMenu.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainMenu.add(quest);
 
         frame.add(mainMenu);
         frame.setVisible(true); //allows window/gui to appear, must have
@@ -668,8 +674,9 @@ public class MenuDriver {
         title.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
         JPanel chooseQuest = new JPanel();
-        chooseQuest.setLayout(bx);
+        chooseQuest.setLayout(new BoxLayout(chooseQuest, BoxLayout.Y_AXIS));
 
+        //<editor-fold desc="quest type buttons">
         JButton qfetch = new JButton("Fetch");
         JButton qkill = new JButton("Kill");
         JButton qtarget = new JButton("Target");
@@ -685,12 +692,18 @@ public class MenuDriver {
         qrandom.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
         chooseQuest.add(qfetch);
+        chooseQuest.add(Box.createRigidArea(new Dimension(0, 10)));
         chooseQuest.add(qkill);
+        chooseQuest.add(Box.createRigidArea(new Dimension(0, 10)));
         chooseQuest.add(qtarget);
+        chooseQuest.add(Box.createRigidArea(new Dimension(0, 10)));
         chooseQuest.add(qdeliver);
+        chooseQuest.add(Box.createRigidArea(new Dimension(0, 10)));
         chooseQuest.add(qescort);
+        chooseQuest.add(Box.createRigidArea(new Dimension(0, 10)));
         chooseQuest.add(qrandom);
         chooseQuest.setBackground(def);
+        //</editor-fold>
 
         qfetch.addActionListener(new ActionListener() {
             @Override
@@ -758,7 +771,6 @@ public class MenuDriver {
             }
         });
 
-
         JPanel buttons = new JPanel();
 
         JButton back = new JButton("Back");
@@ -771,23 +783,12 @@ public class MenuDriver {
         });
         back.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
-        /*JButton confirm = new JButton("Confirm");
-        confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JPanel quest = generatedQuestUI(window, frame, );
-                quest.setVisible(false);
-                window.add(quest);
-                frame.setVisible(false);
-                quest.setVisible(true);
-            }
-        });
-        confirm.setAlignmentX(JButton.CENTER_ALIGNMENT);
-
-        buttons.add(confirm);*/
         buttons.add(back);
         buttons.setBackground(def);
 
+        frame.add(title);
+        frame.add(Box.createRigidArea(new Dimension(0, 10)));
+        frame.add(chooseQuest);
         frame.add(Box.createRigidArea(new Dimension(0, 30)));
         frame.add(buttons);
 
@@ -797,6 +798,63 @@ public class MenuDriver {
 
     public static JPanel generatedQuestUI(JFrame window, JPanel parent, String questType){
 
+        JPanel frame = new JPanel();
+        frame.setBackground(def);
+
+        BoxLayout bx = new BoxLayout(frame, BoxLayout.Y_AXIS);
+        frame.setLayout(bx);
+
+        JLabel title = new JLabel();
+        title.setFont(new Font(font, 0, 25));
+        title.setText("default");
+        title.setForeground(new Color(255, 255, 255));
+        title.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        switch (questType){
+            case "fetchQuest": title.setText("Fetch Quest"); break;
+            case "killQuest": title.setText("Kill Quest"); break;
+            case "targetQuest": title.setText("Target Quest"); break;
+            case "deliverQuest": title.setText("Deliver Quest"); break;
+            case "escortQuest": title.setText("Escort Quest"); break;
+            default: title.setText("Random Quest"); break;
+        }
+
+        JLabel text = new JLabel();
+        text.setFont(new Font(font, 0, 16));
+        text.setForeground(new Color(255, 255, 255));
+        text.setText(new Quest().getQuest(questType));
+        text.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+        JPanel buttons = new JPanel();
+
+        JButton rand = new JButton("Randomise");
+        rand.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text.setText(new Quest().getQuest(questType));
+            }
+        });
+        rand.setAlignmentX(JButton.CENTER_ALIGNMENT);
+
+        JButton back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                frame.setVisible(false);
+                parent.setVisible(true);
+            }
+        });
+        back.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        buttons.add(back);
+        buttons.add(rand);
+        buttons.setBackground(def);
+
+        frame.add(title);
+        frame.add(Box.createRigidArea(new Dimension(0, 20)));
+        frame.add(text);
+        frame.add(Box.createRigidArea(new Dimension(0, 30)));
+        frame.add(buttons);
+
+        return frame;
 
     }
 
