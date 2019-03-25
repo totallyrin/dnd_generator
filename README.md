@@ -8,3 +8,5 @@
 22/03/19 updated menuDriver with (hopefully) working buttons for choosing quest type
 
 25/03/19 updated with working quest panels
+
+25/03/19 added working encounter generator with difficulty settings
