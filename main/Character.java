@@ -18,15 +18,15 @@ public class Character extends Person {
     private Faker faker = new Faker();
     private Random random = new Random();
 
-    private String[] races = {"Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Aarakocra", "Genasi", "Goliath", "Aasimar",
+    protected String[] races = {"Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Aarakocra", "Genasi", "Goliath", "Aasimar",
             "Bugbear", "Firbolg", "Goblin", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Orc", "Tabaxi", "Triton", "Yuan-ti", "Tortle"};
     private String[] alignments = {"Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"};
-    private String[] genders = {"Male", "Female", "Other"};
-    private String[] languages = {"Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Merfolk", "Abyssal", "Celestial", "Draconic",
+    protected String[] genders = {"Male", "Female", "Other"};
+    protected String[] languages = {"Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Merfolk", "Abyssal", "Celestial", "Draconic",
             "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Aarakocra"}; //, "Druidic", "Theives' Cant"
-    private String[] traits = {"Shy", "Arrogant", "Assertive", "Loud", "Annoying", "Studious", "Smart", "Stupid", "Nice", "Rude", "Respectful", "Looks like they need a slap"};
-    private String[] classes = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
-    private String[] theproficiencies = {"Light Armour", "Medium Armour", "Heavy Armour", "Ranged Weapons", "Melee Weapons", "Simple Melee Weapons", "Martial Weapons", "Simple Weapons",
+    protected String[] traits = {"Shy", "Arrogant", "Assertive", "Loud", "Annoying", "Studious", "Smart", "Stupid", "Nice", "Rude", "Respectful", "Looks like they need a slap"};
+    protected String[] classes = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
+    protected String[] theproficiencies = {"Light Armour", "Medium Armour", "Heavy Armour", "Ranged Weapons", "Melee Weapons", "Simple Melee Weapons", "Martial Weapons", "Simple Weapons",
             "Martial Melee Weapons", "Simple Ranged Weapons", "Martial Ranged Weapons"};
 
     Character(){}
@@ -34,15 +34,9 @@ public class Character extends Person {
     public void setClass(String aClass) {
         Class = aClass;
     }
-    public String getaClass() {
-        return Class;
-    }
 
     public void setProficiencies(String proficiencies) {
         this.proficiencies = proficiencies;
-    }
-    public String getProficiencies() {
-        return this.proficiencies;
     }
 
     @Override

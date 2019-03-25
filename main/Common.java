@@ -19,11 +19,11 @@ public class Common {
     }
 
     public static int round(int num) {
-        int temp = num%5;
-        if (temp<3)
-            return num-temp;
+        int temp = num % 5;
+        if (temp < 3)
+            return num - temp;
         else
-            return num+5-temp;
+            return num + 5 - temp;
     }
 
 }

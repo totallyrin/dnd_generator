@@ -15,7 +15,7 @@ public class MenuDriver {
 
         Border empty;
         empty = BorderFactory.createLineBorder(Common.def, 30); //creates a border
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+       // Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
         JFrame frame = new JFrame("D&D Character Generator"); //creating main frame for gui, must have
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set it to close on "x"

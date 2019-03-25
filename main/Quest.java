@@ -10,7 +10,6 @@ public class Quest {
 
     Random random = new Random();
     NPC npc = new NPC().generateRandomNPC();
-    String name = npc.getName();
     String reward = "nothing";
     String[] questTypes = {"fetchQuest", "killQuest", "targetQuest", "deliverQuest", "escortQuest"};
     String[] directions = {"north", "south", "east", "west", "northeast", "northwest", "southeast", "southwest"};
