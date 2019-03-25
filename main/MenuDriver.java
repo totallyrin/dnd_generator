@@ -710,7 +710,7 @@ public class MenuDriver {
             public void actionPerformed(ActionEvent e){
                 JPanel questPanel = generatedQuestUI(window, frame, "fetchQuest");
                 questPanel.setVisible(false);
-                frame.add(questPanel);
+                window.add(questPanel);
                 frame.setVisible(false);
                 questPanel.setVisible(true);
             }
@@ -721,7 +721,7 @@ public class MenuDriver {
             public void actionPerformed(ActionEvent e){
                 JPanel questPanel = generatedQuestUI(window, frame, "killQuest");
                 questPanel.setVisible(false);
-                frame.add(questPanel);
+                window.add(questPanel);
                 frame.setVisible(false);
                 questPanel.setVisible(true);
             }
@@ -732,7 +732,7 @@ public class MenuDriver {
             public void actionPerformed(ActionEvent e){
                 JPanel questPanel = generatedQuestUI(window, frame, "targetQuest");
                 questPanel.setVisible(false);
-                frame.add(questPanel);
+                window.add(questPanel);
                 frame.setVisible(false);
                 questPanel.setVisible(true);
             }
@@ -743,7 +743,7 @@ public class MenuDriver {
             public void actionPerformed(ActionEvent e){
                 JPanel questPanel = generatedQuestUI(window, frame, "deliverQuest");
                 questPanel.setVisible(false);
-                frame.add(questPanel);
+                window.add(questPanel);
                 frame.setVisible(false);
                 questPanel.setVisible(true);
             }
@@ -754,7 +754,7 @@ public class MenuDriver {
             public void actionPerformed(ActionEvent e){
                 JPanel questPanel = generatedQuestUI(window, frame, "escortQuest");
                 questPanel.setVisible(false);
-                frame.add(questPanel);
+                window.add(questPanel);
                 frame.setVisible(false);
                 questPanel.setVisible(true);
             }
@@ -765,7 +765,7 @@ public class MenuDriver {
             public void actionPerformed(ActionEvent e){
                 JPanel questPanel = generatedQuestUI(window, frame, "N/A");
                 questPanel.setVisible(false);
-                frame.add(questPanel);
+                window.add(questPanel);
                 frame.setVisible(false);
                 questPanel.setVisible(true);
             }
@@ -821,7 +821,7 @@ public class MenuDriver {
         JLabel text = new JLabel();
         text.setFont(new Font(font, 0, 16));
         text.setForeground(new Color(255, 255, 255));
-        text.setText(new Quest().getQuest(questType));
+        text.setText("<html><div style='text-align: center;'>" + new Quest().getQuest(questType) + "</div></html>");
         text.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
         JPanel buttons = new JPanel();
@@ -830,7 +830,7 @@ public class MenuDriver {
         rand.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                text.setText(new Quest().getQuest(questType));
+                text.setText("<html><div style='text-align: center;'>" + new Quest().getQuest(questType) + "</div></html>");
             }
         });
         rand.setAlignmentX(JButton.CENTER_ALIGNMENT);
@@ -857,5 +857,7 @@ public class MenuDriver {
         return frame;
 
     }
+
+
 
 }
