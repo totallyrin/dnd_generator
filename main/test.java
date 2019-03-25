@@ -11,46 +11,11 @@ public class test {
 
     public static void main(String[] args){
 
-        JFrame frame = new JFrame("test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout());
+        String string = "This is working badly";
 
-        JPanel panel1 = new JPanel();
-        JPanel panel2 = new JPanel();
-        JLabel text = new JLabel("Hello!");
-        text.setText("This is a label");
-        JButton button = new JButton("This is a button!");
-        JButton button2 = new JButton("This is a button also!");
+        string = string.replace("badly", "well");
 
-        panel1.add(text);
-        panel1.add(button2);
-        panel2.add(button);
-
-        frame.add(panel1);
-        panel1.setVisible(false);
-        frame.add(panel2);
-        panel2.setVisible(true);
-
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panel2.setVisible(false);
-                panel1.setVisible(true);
-            }
-        });
-
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panel1.setVisible(false);
-                panel2.setVisible(true);
-            }
-        });
-
-        frame.pack();
-        frame.setVisible(true);
-
-
+        System.out.println(string);
 
     }
 

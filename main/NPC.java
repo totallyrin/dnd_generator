@@ -1,7 +1,14 @@
 package main;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
+
 import com.github.javafaker.Faker;
+
+import javax.swing.*;
+import javax.swing.border.Border;
 
 public class NPC extends Person {
 
@@ -16,16 +23,7 @@ public class NPC extends Person {
             "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Aarakocra"}; //, "Druidic", "Theives' Cant"
     private String[] traits = {"Shy", "Arrogant", "Assertive", "Loud", "Annoying", "Studious", "Smart", "Stupid", "Nice", "Rude", "Respectful", "Looks like they need a slap"};
 
-    NPC() {
-    }
-
-    NPC(String name, String age) {
-        super(name, age);
-    }
-
-    NPC(String name, String age, String race, String gender) {
-        super(name, age, race, gender);
-    }
+    NPC() {}
 
     @Override
     public String returnInfo() {
@@ -70,4 +68,63 @@ public class NPC extends Person {
         npc.setStats(stats);
         return npc;
     }
+
+    public static JPanel npcGeneratorUI(JPanel parent) {
+
+        NPC npc = new NPC().generateRandomNPC();
+
+        JPanel frame = new JPanel();
+        frame.setBackground(Common.def);
+
+        BoxLayout bx = new BoxLayout(frame, BoxLayout.Y_AXIS);
+        frame.setLayout(bx);
+
+        JLabel title = new JLabel();
+        title.setFont(new Font(Common.font, 0, 25));
+        title.setForeground(new Color(255, 255, 255));
+        title.setText(npc.getName());
+        title.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+        JLabel text = new JLabel();
+        text.setFont(new Font(Common.font, 0, 16));
+        text.setForeground(new Color(255, 255, 255));
+        text.setText("<html>" + npc.returnInfo().replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+        text.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+        JPanel buttons = new JPanel();
+
+        JButton rand = new JButton("Randomise");
+        rand.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NPC npc = new NPC().generateRandomNPC();
+                title.setText(npc.getName());
+                text.setText("<html>" + npc.returnInfo().replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+            }
+        });
+        rand.setAlignmentX(JButton.CENTER_ALIGNMENT);
+
+        JButton back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                frame.setVisible(false);
+                parent.setVisible(true);
+            }
+        });
+        back.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        buttons.add(back);
+        buttons.add(rand);
+        buttons.setBackground(Common.def);
+
+        frame.add(title);
+        frame.add(Box.createRigidArea(new Dimension(0, 20)));
+        frame.add(text);
+        frame.add(Box.createRigidArea(new Dimension(0, 30)));
+        frame.add(buttons);
+
+        return frame;
+
+    }
+
 }
