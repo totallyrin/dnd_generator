@@ -10,3 +10,5 @@
 25/03/19 updated with working quest panels
 
 25/03/19 added working encounter generator with difficulty settings
+
+21/05/19 updated getArticle in Common.java to correctly recognise capital vowels
